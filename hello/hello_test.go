@@ -6,17 +6,22 @@ import (
 )
 
 func TestHello(t *testing.T) {
-	// exp := "Hello World"
-	// obs := Hello()
+	var obs, exp string
 
-	// if exp == obs {
-	// 	fmt.Println("All good")
-	// } else {
-	// 	t.Errorf("Obtained: %q but Expected: %q", obs, exp)
-	// }
+	obs = Hello("Sriman")
+	exp = "Hello Sriman"
+	assertStringsEquality(t, exp, obs)
 
-	obs := Hello("Sriman")
-	exp := "Hello Sriman"
+	//sub-test demonstration
+	t.Run("Use 'World' when empty string is passed", func(t *testing.T) {
+		obs = Hello("")
+		exp = "Hello World"
+		assertStringsEquality(t, exp, obs)
+	})
+}
+
+func assertStringsEquality(t testing.TB, exp, obs string) {
+	t.Helper()
 
 	if exp == obs {
 		fmt.Println("All good")
