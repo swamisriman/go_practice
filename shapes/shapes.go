@@ -13,7 +13,7 @@ func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
 
-func (r Rectangle) Perimmeter() float64 {
+func (r Rectangle) Perimeter() float64 {
 	return (r.Width + r.Height) * 2
 }
 
@@ -29,10 +29,8 @@ func (c Circle) Perimeter() float64 {
 	return 2 * math.Pi * c.Radius
 }
 
-func Perimeter(rect Rectangle) float64 {
-	return (rect.Width + rect.Height) * 2
-}
-
-func Area(rect Rectangle) float64 {
-	return rect.Width * rect.Height
+// Interface defines which methods a struct must implement to be of its type. No explicit mention is required in struct.
+type Shape interface {
+	Area() float64
+	Perimeter() float64
 }

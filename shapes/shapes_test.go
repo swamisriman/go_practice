@@ -5,66 +5,40 @@ import (
 	"testing"
 )
 
-func TestPerimeter(t *testing.T) {
-	t.Run("Getting perimeter of rectangle when sides are given", func(t *testing.T) {
-		rect := Rectangle{2.0, 5.0}
-		actual := Perimeter(rect)
-		expected := 14.0
-
-		if actual != expected {
-			t.Errorf("expected: %.2f, but actual: %2.f", expected, actual)
-		}
-	})
-
-	t.Run("Getting perimeter of rectangle when sides are given using Rectangle struct's method", func(t *testing.T) {
-		rect := Rectangle{2.0, 6.0}
-		actual := rect.Perimmeter()
-		expected := 16.0
-
-		if actual != expected {
-			t.Errorf("expected: %.2f, but actual: %2.f", expected, actual)
-		}
-	})
-
-	t.Run("Getting perimeter of circle when radius is given using Circle struct's method", func(t *testing.T) {
-		circle := Circle{2.0}
-		actual := circle.Perimeter()
-		expected := 2 * math.Pi * 2
-
-		if actual != expected {
-			t.Errorf("expected: %g, but actual: %g", expected, actual)
-		}
-	})
-}
-
 func TestArea(t *testing.T) {
-	t.Run("Getting area of rectangle when sides are given", func(t *testing.T) {
-		rect := Rectangle{2.0, 5.0}
-		actual := Area(rect)
-		expected := 10.0
 
-		if actual != expected {
-			t.Errorf("expected: %.2f, but actual: %2.f", expected, actual)
+	checkArea := func(t testing.TB, shape Shape, name string, expected float64) {
+		t.Helper()
+		actual := shape.Area()
+
+		if expected != actual {
+			t.Errorf("shape: %q expected area: %g, but actual: %g", name, expected, actual)
 		}
-	})
+	}
 
-	t.Run("Getting area of rectangle when sides are given using Rectangle struct's method", func(t *testing.T) {
-		rect := Rectangle{2.0, 6.0}
-		actual := rect.Area()
-		expected := 12.0
+	checkPerimeter := func(t testing.TB, shape Shape, name string, expected float64) {
+		t.Helper()
+		actual := shape.Perimeter()
 
-		if actual != expected {
-			t.Errorf("expected: %.2f, but actual: %2.f", expected, actual)
+		if expected != actual {
+			t.Errorf("shape: %q expected perimeter: %g, but actual: %g", name, expected, actual)
 		}
-	})
+	}
 
-	t.Run("Getting area of circle when radius is given using Circle struct's method", func(t *testing.T) {
-		circle := Circle{1.0}
-		actual := circle.Area()
-		expected := math.Pi
+	//Anonymous struct
+	testData := []struct {
+		name              string
+		shape             Shape
+		expectedArea      float64
+		expectedPerimeter float64
+	}{
+		// Elements of the anonymous struct. As there is no name, there is nothing before '{'
+		{name: "circle", shape: Circle{2.0}, expectedArea: math.Pi * 2 * 2, expectedPerimeter: 2 * math.Pi * 2},
+		{"rectangle", Rectangle{2.0, 1.5}, 3.0, 7},
+	}
 
-		if actual != expected {
-			t.Errorf("expected: %g, but actual: %g", expected, actual)
-		}
-	})
+	for _, datum := range testData {
+		checkArea(t, datum.shape, datum.name, datum.expectedArea)
+		checkPerimeter(t, datum.shape, datum.name, datum.expectedPerimeter)
+	}
 }
