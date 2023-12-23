@@ -5,4 +5,5 @@ use (
 	./integers
 	./iteration
 	./summer
+	./experiment
 )
