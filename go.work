@@ -7,4 +7,6 @@ use (
 	./iteration
 	./summer
 	./shapes
+	./wallet
+	./dict
 )
