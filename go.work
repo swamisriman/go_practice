@@ -10,4 +10,5 @@ use (
 	./wallet
 	./dict
 	./depinj
+	./mock
 )
