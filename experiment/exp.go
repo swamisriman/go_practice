@@ -1,7 +1,7 @@
 package experiment
 
 import (
-	"fmt"
+// "fmt"
 )
 
 func Experiment() {

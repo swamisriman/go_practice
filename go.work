@@ -9,4 +9,5 @@ use (
 	./shapes
 	./wallet
 	./dict
+	./depinj
 )

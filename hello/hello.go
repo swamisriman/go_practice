@@ -17,10 +17,10 @@ func Hello(lang, personName string) string {
 		personName = "World"
 	}
 
-	return getGreetingInLang(lang) + " " + personName
+	return GetGreetingInLang(lang) + " " + personName
 }
 
-func getGreetingInLang(lang string) string {
+func GetGreetingInLang(lang string) string {
 	switch lang {
 	case telugu:
 		return teluguGreeting
