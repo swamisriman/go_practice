@@ -11,4 +11,5 @@ use (
 	./dict
 	./depinj
 	./mock
+	./concur
 )
