@@ -12,4 +12,5 @@ use (
 	./depinj
 	./mock
 	./concur
+	./sync_demon
 )
